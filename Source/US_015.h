@@ -1,14 +1,10 @@
 #ifndef __US_015_H__
 #define __US_015_H__
 
-#include<reg52.h>
+#include "bst_car.h"	 //包含bst_car.h智能小车头文件
 
-sbit Trig = P2^1;	   //超声波模块Trig	控制端
-sbit Echo = P2^0;	   //超声波模块Echo	接收端
-
-void Delay10us(unsigned char i);
 void start_measure();
-void Timer1_Init();
+void Timer2_Init();
 unsigned char distance_measure();
 void Ultrasonic(unsigned char* direction);	  //超声波测距
 
