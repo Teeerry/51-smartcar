@@ -8,11 +8,10 @@
 void forward(void);
 void back(void);
 void stop(void);
-void turn_right(void);
-void turn_left(void);
+//void turn_right(void);
+//void turn_left(void);
 void spin_right(void);
 void spin_left(void);
 
-void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n, unsigned char direction);
-
+void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, unsigned char pwm_n_right, unsigned char direction);
 #endif

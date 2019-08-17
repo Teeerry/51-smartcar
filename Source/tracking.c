@@ -7,22 +7,23 @@
 #include "infrared.h"
 
 // 红外循迹返回小车移动方向
-unsigned char InfraredTracking()
+void InfraredTracking(unsigned char *mode, unsigned char* direction)
 {
-	unsigned char direction = 1;
+	*direction = 1;
 	//有信号为0  没有信号为1
-  if(infrared_left == 0 && infrared_right == 0)
-		direction = 0;      // 小车停止
-  else if(infrared_left == 1 && infrared_right == 0)	  //左边检测到黑线
+	while(*mode == infrared)
 	{
-		direction = 3;		// 小车左转
-	}			   
-	else if(infrared_right == 1 && infrared_left == 0)		//右边检测到黑线
-	{	  
-		direction = 4;		// 小车右转
+		if(infrared_left == 0 && infrared_right == 0)
+			*direction = 0;      // 小车停止
+		else if(infrared_left == 1 && infrared_right == 0)	  //左边检测到黑线
+		{
+			*direction = 3;		// 小车左转
+		}			   
+		else if(infrared_right == 1 && infrared_left == 0)		//右边检测到黑线
+		{	  
+			*direction = 4;		// 小车右转
+		}
+		else
+			*direction = 1;	  // 小车前进
 	}
-	else
-		direction = 1;	  // 小车前进
-	
-	return direction;
 }

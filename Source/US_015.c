@@ -6,8 +6,8 @@
 ***************************************************************************************/
 #include"US_015.h"
 
-// ¶¨Ê±Æ÷1³õÊ¼»¯
-void Timer1_Init()
+// ¶¨Ê±Æ÷2³õÊ¼»¯
+void Timer2_Init()
 {
 	TH2 = 0;
 	TL2 = 0;
@@ -27,7 +27,7 @@ unsigned char distance_measure()
 	distance =(time*1.7)/10+10;  // Ëã³öÀ´ÊÇMM
 	if(distance<300)		  	     // ¾àÀëÐ¡ÓÚ30cm
 	{
-		direction = 0;    // Ð¡³µÍ£Ö¹
+		direction = 3;    // Ð¡³µÍ£Ö¹
 	}
 	else
 		direction = 1;
@@ -42,21 +42,12 @@ void start_measure()	// TrigÊä³ö¸ßµçÆ½´¥·¢²â¾à
   Trig=0;
 }
 
-void Ultrasonic(unsigned char* direction)	    //³¬Éù²¨
+void Ultrasonic(unsigned char *mode, unsigned char* direction)	    //³¬Éù²¨
 {	  		
-	Timer1_Init();	 
+	Timer2_Init();	 
 	Trig=0;
-	while(1)
-	{	
-//		start_measure();	//Æô¶¯³¬Éù²¨
-//    Echo = 0;
-//		while(!Echo); 	//µÈ´ýEcho»Ø²¨Òý½Å±ä¸ßµçÆ½//////////////////////////////////////////////////////////////
-//    TR2=1;	FM = 0;                          		//³ÌÐòÔËÐÐµ½´Ë´¦Ê±ËµÃ÷Echo½Å±ä³ÉÁË¸ßµçÆ½£¬´ËÊ±Æô¶¯T0¿ªÊ¼¼ÆÊ±
-//    while(Echo);		//µÈ´ýEcho»Ø²¨Òý½Å¸ßµçÆ½½áÊø               
-//    TR2=0;						//³ÌÐòÔËÐÐµ½´Ë´¦Ê±ËµÃ÷Echo½Å±ä³ÉÁËµÍµçÆ½£¬´ËÊ±T0Í£Ö¹¼ÆÊ
-//		
-//	  *direction = distance_measure();
-		
+	while(*mode == wave)
+	{		
 		  Echo=1;
 	    start_measure();	//Æô¶¯Ä£¿é   
 	    if(Echo==1)
@@ -65,6 +56,8 @@ void Ultrasonic(unsigned char* direction)	    //³¬Éù²¨
 				 while(Echo);		// µ±EchoÎª1¼ÆÊý²¢µÈ´ý
 	       TR2=0;				  // ¹Ø±Õ¼ÆÊý
 				 *direction = distance_measure();			  //¼ÆËã
-		   }		
+		     delay(500);    // ÑÓÊ±500msÍê³É×ªÍä
+				 *direction = 1;// »Ö¸´Ö±ÐÐ
+			}		
 	}
 }

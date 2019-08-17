@@ -6,6 +6,6 @@
 void start_measure();
 void Timer2_Init();
 unsigned char distance_measure();
-void Ultrasonic(unsigned char* direction);	  //³¬Éù²¨²â¾à
+void Ultrasonic(unsigned char* mode, unsigned char* direction);	  //³¬Éù²¨²â¾à
 
 #endif

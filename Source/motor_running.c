@@ -30,21 +30,21 @@ void stop(void)			        // 停止函数
 	IN4=0; // 右电机正转
 }
 
-void turn_right(void)		    // 右转函数
-{ 
-	IN1=0;
-	IN2=1; // 左电机的正转
-	IN3=0;
-	IN4=0; // 右电机不动
-}
+//void turn_right(void)		    // 右转函数
+//{ 
+//	IN1=0;
+//	IN2=1; // 左电机的正转
+//	IN3=0;
+//	IN4=0; // 右电机不动
+//}
 
-void turn_left(void)			  // 左转函数
-{ 
-	IN1=0;
-	IN2=0; // 左电机不动
-	IN3=1;
-	IN4=0; // 右电机正转
-}
+//void turn_left(void)			  // 左转函数
+//{ 
+//	IN1=0;
+//	IN2=0; // 左电机不动
+//	IN3=1;
+//	IN4=0; // 右电机正转
+//}
 
 
 

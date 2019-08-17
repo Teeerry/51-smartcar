@@ -9,9 +9,9 @@
 #include <string.h>
 
 //主函数
-void TeleControl(unsigned char* direction, unsigned char* inputString, unsigned char* newLineReceived)
+void TeleControl(unsigned char* mode, unsigned char* direction, unsigned char* inputString, unsigned char* newLineReceived)
 {	
-	while(1)	//无限循环
+	while(*mode == telecontrol)	//无限循环
 	{ 
 		if (*newLineReceived)
 			{

@@ -10,15 +10,42 @@
 
 /*******************************************************************************
 * 函 数 名       : MovingControl
-* 函数功能		   : 主函数
-* 输    入       : 方向(方向前进1，后退2，左转3，右转4,停止（其他))
-									 PWM 开启标志
-									 PWM 计数器
-                   PWM 设定的N 占空比N/20 //速度调节变量 0-20。。。0最小，20最大
-* 输    出    	 : 移动的结果1或0 1代表成功移动
+* 函数功能		   : 电机控制主函数
+* 输    入       : pwm_on：PWM开启标志
+									 pwm_val：PWM 计数器
+                   pwm_n_left：左轮占空比
+									 pwm_n_right：右路占空比
+									 direction：方向(方向前进1，后退2，左转3，右转4,停止（其他))
+* 输    出    	 : 无
 *******************************************************************************/
-void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n, unsigned char direction)
+void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, unsigned char pwm_n_right, unsigned char direction)
 {
+	int pwm_left = pwm_n_left, pwm_right = pwm_n_right;
+	// 方向控制
+	if(direction == 1)
+	{
+		forward();
+	}
+	else if (direction == 2)
+	{
+		back();
+	}
+	else if (direction == 3)   // 低速度转弯
+	{
+		spin_left();
+		pwm_left = 8;
+		pwm_right = 9;
+	}
+	else if (direction == 4)   // 低速度转弯
+	{
+		spin_right();
+		pwm_left = 8;
+		pwm_right = 9;
+	}
+	else
+		stop();
+	
+	// PWM控制
 	if (pwm_on == 0) // 全速模式
 	{
 		EN1=1;
@@ -27,27 +54,24 @@ void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n, unsign
 	
 	else             // PWM调速模式
 	{
-		if(pwm_val <= pwm_n)
+		if(pwm_val < pwm_left)   // motor left
 		{
-			EN1=1; 
-			EN2=1;
+			EN1=1;
 		}
 	  else 
 		{
 	    EN1=0;
+		}	
+		
+		if(pwm_val < pwm_right)  // motor right
+		{
+			EN2=1;
+		}
+	  else 
+		{
 			EN2=0;
 		}		 
 	}
 	
-	if(direction == 1)
-		forward();
-	else if (direction == 2)
-		back();
-	else if (direction == 3)
-		spin_left();
-	else if (direction == 4)
-		spin_right();
-	else
-		stop();
 }
 
