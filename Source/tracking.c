@@ -1,12 +1,13 @@
 /**************************************************************************************
 实验项目：红外模块
-作者：Terry
-日期：2019-08-13
-联系方式：terryluohello@qq.com
+作者：Terry Billy
+日期：2019-08-18
+联系方式：terryluohello@qq.com 2228238121@qq.com
 ***************************************************************************************/	
+
 #include "infrared.h"
 
-// 红外循迹返回小车移动方向
+// 红外循迹主程序
 void InfraredTracking(unsigned char *mode, unsigned char* direction)
 {
 	*direction = 1;

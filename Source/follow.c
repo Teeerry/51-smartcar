@@ -1,8 +1,8 @@
 /**************************************************************************************
 实验项目：跟随小车
-作者：Terry
+作者：Terry Billy
 日期：2019-08-18
-联系方式：terryluohello@qq.com
+联系方式：terryluohello@qq.com 2228238121@qq.com
 ***************************************************************************************/	
 
 #include "follow.h"				// 跟随头文件
@@ -18,7 +18,7 @@ float distance_measure_2()
 	
 	return (time*1.7)/10+10;     // 算出来是MM	
 } 
-
+// 跟随主程序
 void Following(unsigned char *mode, unsigned char* direction)
 {	  		
 	float distances[] = {0.0, 0.0, 0.0, 0.0, 0.0};

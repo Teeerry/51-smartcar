@@ -1,14 +1,14 @@
 /**************************************************************************************
 实验项目：蓝牙模块
-作者：Terry
-日期：2019-08-16
-联系方式：terryluohello@qq.com
+作者：Terry Billy
+日期：2019-08-18
+联系方式：terryluohello@qq.com 2228238121@qq.com
 ***************************************************************************************/	
 
 #include "bluetooth.h"	 //包含bst_car.h智能小车头文件
 #include <string.h>
 
-//主函数
+// 蓝牙遥控主程序
 void TeleControl(unsigned char* mode, unsigned char* direction, unsigned char* inputString, unsigned char* newLineReceived)
 {	
 	while(*mode == telecontrol)	//无限循环
@@ -38,7 +38,7 @@ void TeleControl(unsigned char* mode, unsigned char* direction, unsigned char* i
 // 蓝牙初始化
 void BluetoothInit(void)
 {
-  SCON = 0x50; 	// SCON: 模式1, 8-bit UART, 使能接收
+  SCON = 0x50; 	// SCON: 模式1, 8bit UART, 使能接收
 	TMOD |= 0x20;
 	TH1 =0xfd; 		//波特率9600 初值
 	TL1 =0xfd;
@@ -48,7 +48,7 @@ void BluetoothInit(void)
 }
 
 
-//串口发送函数
+// 串口发送函数，用于返回接收值，提示已经接收到
 void PutString(unsigned char *TXStr)  
 {                
 	ES=0;     

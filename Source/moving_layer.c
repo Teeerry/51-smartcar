@@ -1,10 +1,11 @@
 /**************************************************************************************
 程序项目：运动层控制函数
 主要内容：根据传感器数据，获得的移动命令，控制电机移动
-作者：Terry
-日期：2019-08-13
-联系方式：terryluohello@qq.com
-***************************************************************************************/
+作者：Terry Billy
+日期：2019-08-18
+联系方式：terryluohello@qq.com 2228238121@qq.com
+***************************************************************************************/	
+
 #include "motor.h"
 
 
@@ -33,14 +34,14 @@ void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, u
 	else if (direction == 3)   // 低速度前左转弯
 	{
 		spin_left();
-		pwm_left = 12;
-		pwm_right = 12;
+		pwm_left = 13;
+		pwm_right = 13;
 	}
 	else if (direction == 4)   // 低速度前右转弯
 	{
 		spin_right();
-		pwm_left = 12;
-		pwm_right = 12;
+		pwm_left = 13;
+		pwm_right = 13;
 	}
 	else if (direction == 5)   // 低速度后左转弯
 	{
