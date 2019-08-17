@@ -116,10 +116,10 @@ void UART_SER () interrupt 4
 		
 		switch(inputString[3])  // 更新电机转速
 			{
-				case v_f:  speed_left = 25; speed_right = 22; break; // 快速
-				case v_m:  speed_left = 12; speed_right = 14; break; // 中速
-				case v_s:  speed_left = 8;  speed_right = 9;  break; // 慢速
-				default:   speed_left = 12; speed_right = 14; break; // 中速
+				case v_f:  speed_left = 25; speed_right = 25; break; // 快速
+				case v_m:  speed_left = 12; speed_right = 12; break; // 中速
+				case v_s:  speed_left = 8;  speed_right = 8;  break; // 慢速
+				default:   speed_left = 12; speed_right = 12; break; // 中速
 			}
 		mode = inputString[1];  // 及时更新工作模式
 	}

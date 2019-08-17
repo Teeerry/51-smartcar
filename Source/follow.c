@@ -74,16 +74,16 @@ void Following(unsigned char *mode, unsigned char* direction)
 
 void KeepDistance(float cur_ave_distances, unsigned char* direction)
 {
-				if (cur_ave_distances > 200)    // 前进调整
+				if (cur_ave_distances > 130)    // 前进调整
 				{
 					if(infrared_top_left == 0 && infrared_top_right == 1)      // 红外检测到右边无障碍物
-						*direction = 4;    // 小车前右转
+						*direction = 3;    // 小车前左转
 		      else if(infrared_top_left == 1 && infrared_top_right == 0) // 红外检测到左边无障碍物																							 // 其他情况
-			      *direction = 3;    // 小车前左转
+			      *direction = 4;    // 小车前右转
 		      else if(infrared_top_left == 1 && infrared_top_right == 1) // 红外检测到左、右均无障碍物
 			      *direction = 1;    // 小车前进
 				}
-				else if(cur_ave_distances < 100) // 后退缓冲
+				else if(cur_ave_distances < 70) // 后退缓冲
 				{
 					if(infrared_top_left == 0 && infrared_top_right == 1)      // 红外检测到右边无障碍物
 						*direction = 6;    // 小车后右转
@@ -95,9 +95,9 @@ void KeepDistance(float cur_ave_distances, unsigned char* direction)
 				else   // 停下
 				{
 					if(infrared_top_left == 0 && infrared_top_right == 1)      // 红外检测到右边无障碍物
-						*direction = 4;    // 小车前右转
+						*direction = 3;    // 小车前右转
 		      else if(infrared_top_left == 1 && infrared_top_right == 0) // 红外检测到左边无障碍物																							 // 其他情况
-			      *direction = 3;    // 小车前左转
+			      *direction = 4;    // 小车前左转
 		      else 
 			      *direction = 0;    // 小车停下
 				}	
