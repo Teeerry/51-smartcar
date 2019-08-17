@@ -13,13 +13,13 @@ void InfraredTracking(unsigned char *mode, unsigned char* direction)
 	//有信号为0  没有信号为1
 	while(*mode == infrared)
 	{
-		if(infrared_left == 0 && infrared_right == 0)
+		if(infrared_bottom_left == 0 && infrared_bottom_right == 0)
 			*direction = 0;      // 小车停止
-		else if(infrared_left == 1 && infrared_right == 0)	  //左边检测到黑线
+		else if(infrared_bottom_left == 1 && infrared_bottom_right == 0)	  //左边检测到黑线
 		{
 			*direction = 3;		// 小车左转
 		}			   
-		else if(infrared_right == 1 && infrared_left == 0)		//右边检测到黑线
+		else if(infrared_bottom_right == 1 && infrared_bottom_left == 0)		//右边检测到黑线
 		{	  
 			*direction = 4;		// 小车右转
 		}

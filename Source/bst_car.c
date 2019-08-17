@@ -8,10 +8,17 @@
 #include "bst_car.h"	 //包含bst_car.h智能小车头文件
 #include <intrins.h>   //包含nop等系统函数
 
-//延时函数	
+// 蜂鸣器提示
+void buzzer(void)
+{
+	FM = 0;           
+	delay(100);
+	FM = 1;
+}
+// 延时函数	
 void delay(unsigned int xms)				
 {
-    unsigned int i,j;
+  unsigned int i,j;
 	for(i=xms;i>0;i--)		      //i=xms即延时约xms毫秒
     for(j=112;j>0;j--);
 }

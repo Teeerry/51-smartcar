@@ -12,6 +12,7 @@ void stop(void);
 //void turn_left(void);
 void spin_right(void);
 void spin_left(void);
-
+void spin_back_right(void);
+void spin_back_left(void);
 void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, unsigned char pwm_n_right, unsigned char direction);
 #endif

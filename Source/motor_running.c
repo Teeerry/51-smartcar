@@ -30,7 +30,7 @@ void stop(void)			        // 停止函数
 	IN4=0; // 右电机正转
 }
 
-//void turn_right(void)		    // 右转函数
+//void turn_right(void)		    // 前右转函数
 //{ 
 //	IN1=0;
 //	IN2=1; // 左电机的正转
@@ -38,7 +38,7 @@ void stop(void)			        // 停止函数
 //	IN4=0; // 右电机不动
 //}
 
-//void turn_left(void)			  // 左转函数
+//void turn_left(void)			  // 前左转函数
 //{ 
 //	IN1=0;
 //	IN2=0; // 左电机不动
@@ -48,7 +48,7 @@ void stop(void)			        // 停止函数
 
 
 
-void spin_right(void)			  // 向右打转函数
+void spin_right(void)			  // 前向右打转函数
 { 
 	IN1=0;
 	IN2=1; // 左电机正转
@@ -56,10 +56,27 @@ void spin_right(void)			  // 向右打转函数
 	IN4=1; // 右电机反转
 }
 
-void spin_left(void)			  // 向左打转函数
+void spin_left(void)			  // 前向左打转函数
 {
   IN1=1;
 	IN2=0; // 左电机反转
 	IN3=1;
 	IN4=0; // 右电机正转
+}
+
+
+void spin_back_right(void)			  // 后向右打转函数，左轮应比后轮快
+{ 
+  IN1=1;
+	IN2=0; // 左电机反转
+	IN3=1;
+	IN4=0; // 右电机正转
+}
+
+void spin_back_left(void)			    // 后向左打转函数,右轮应比左轮快
+{
+	IN1=0;
+	IN2=1; // 左电机正转 
+	IN3=0;
+	IN4=1; // 右电机反转	
 }

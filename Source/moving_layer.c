@@ -20,7 +20,7 @@
 *******************************************************************************/
 void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, unsigned char pwm_n_right, unsigned char direction)
 {
-	int pwm_left = pwm_n_left, pwm_right = pwm_n_right;
+	unsigned char pwm_left = pwm_n_left, pwm_right = pwm_n_right;
 	// 方向控制
 	if(direction == 1)
 	{
@@ -30,17 +30,29 @@ void MovingControl(bit pwm_on,unsigned char pwm_val, unsigned char pwm_n_left, u
 	{
 		back();
 	}
-	else if (direction == 3)   // 低速度转弯
+	else if (direction == 3)   // 低速度前左转弯
 	{
 		spin_left();
 		pwm_left = 8;
 		pwm_right = 9;
 	}
-	else if (direction == 4)   // 低速度转弯
+	else if (direction == 4)   // 低速度前右转弯
 	{
 		spin_right();
+		pwm_left = 9;
+		pwm_right = 8;
+	}
+	else if (direction == 5)   // 低速度后左转弯
+	{
+		spin_back_left();
 		pwm_left = 8;
 		pwm_right = 9;
+	}
+	else if (direction == 6)   // 低速度后右转弯
+	{
+		spin_back_right();
+		pwm_left = 9;
+		pwm_right = 8;
 	}
 	else
 		stop();

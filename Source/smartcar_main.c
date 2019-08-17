@@ -9,6 +9,7 @@
 #include "infrared.h"			// 红外头文件
 #include "US_015.h"				// 超声波头文件
 #include "bluetooth.h"		// 蓝牙头文件
+#include "follow.h"				// 跟随头文件
 
 bit startBit = 0;  				          // 串口接收开始标志位
 unsigned char newLineReceived = 0; 	// 串口一帧协议包接收完成
@@ -32,19 +33,16 @@ void main()
   ET0= 1;
 	EA = 1;	    //开总中断
 	BluetoothInit();
-	
-	FM = 0;           // 蜂鸣器提示
-	delay(100);
-	FM = 1;
+	buzzer();         // 蜂鸣器提示
 	while(1)
 	{					
 		direction = 1;  // 初始移动方向		
-//		mode = inputString[1];
 		switch(mode)
 			{
 				case telecontrol: P1=P1<<1; TeleControl(&mode, &direction, inputString, &newLineReceived); break; // 蓝牙遥控
 				case infrared:    P1=P1<<2; InfraredTracking(&mode, &direction); break; // 红外循迹
 				case wave:        P1=P1<<3; Ultrasonic(&mode, &direction); break;       // 超声波避障
+				case follow:      P1=P1<<4; Following(&mode, &direction); break;        // 跟随模式
 				default:          P1=P1<<6; TeleControl(&mode, &direction, inputString, &newLineReceived); break; // 蓝牙遥控
 			}
 			

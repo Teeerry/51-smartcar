@@ -13,7 +13,7 @@ void Timer2_Init()
 	TL2 = 0;
 }
  
-//测距函数，返回距离数值
+//测距函数，返回运动方向
 unsigned char distance_measure()		 		
 {
 	unsigned char direction = 1; // 小车默认移动方向
@@ -25,9 +25,18 @@ unsigned char distance_measure()
 	TL2=0;
 	
 	distance =(time*1.7)/10+10;  // 算出来是MM
-	if(distance<300)		  	     // 距离小于30cm
+	if(distance < 300)		  	     // 距离小于30cm
 	{
-		direction = 3;    // 小车停止
+		if(infrared_top_left == 0 && infrared_top_right == 1) // 红外检测到右边无障碍物
+			direction = 4;    // 小车右转
+		else if(infrared_top_left == 1 && infrared_top_right == 0)	// 红外检测到左边无障碍物																							 // 其他情况
+			direction = 3;    // 小车左转
+		else if(infrared_top_left == 1 && infrared_top_right == 1) // 红外检测到左、右均无障碍物
+			direction = 1;    // 小车前进
+		else 
+			direction = 2;    // 小车后退
+//				while(infrared_top_left == 0 && infrared_top_right == 0) // 红外检测到左、右均有障碍物
+//					buzzer();     // 蜂鸣器提醒
 	}
 	else
 		direction = 1;
@@ -46,6 +55,7 @@ void Ultrasonic(unsigned char *mode, unsigned char* direction)	    //超声波
 {	  		
 	Timer2_Init();	 
 	Trig=0;
+	*direction = 1;
 	while(*mode == wave)
 	{		
 		  Echo=1;

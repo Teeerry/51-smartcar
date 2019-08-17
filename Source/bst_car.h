@@ -14,8 +14,12 @@ sbit EN1=P1^4; // 高电平使能
 sbit EN2=P1^5; // 高电平使能 
 
 // 红外传感器声明
-sbit infrared_right = P3^2;   
-sbit infrared_left  = P3^3;
+sbit infrared_bottom_right = P3^2;   
+sbit infrared_bottom_left  = P3^3;
+
+// 避障红外定义  
+sbit infrared_top_left  = P3^4;	   //左避障红外传感器  
+sbit infrared_top_right = P3^5;	   //右避障红外传感器 
 
 // 超声波模块
 sbit Trig = P2^1;	   //超声波模块Trig	控制端
@@ -32,6 +36,7 @@ sbit FM=P2^3;
 #define   telecontrol  '1'//遥控模式
 #define   infrared     '2'//红外模式
 #define   wave         '3'//超声波模式
+#define   follow       '4'//跟随模式
 
 #define 	forward_car '1'//按键前
 #define 	back_car    '2'//按键后
@@ -44,6 +49,7 @@ sbit FM=P2^3;
 #define		v_m						'2'//速度慢
 #define   v_s						'1'//速度慢
 
+void buzzer(void);               // 蜂鸣器提示
 void delay(unsigned int xms);
 void Delay10us(unsigned char i);
 #endif
